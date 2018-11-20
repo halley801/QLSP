@@ -7,11 +7,11 @@ var jwt = new JWT()
 class UserHandler {
   // login
   async login (data) {
-    let user = await UserModel.findOne({ username: data.username })
+    let user = await UserModel.findOne({ username: data.username }) // find user by username
     if (!user) return loginError.LOGIN_01 // not found user
-    const isMatch = await user.comparePassword(data.password)
+    const isMatch = await user.comparePassword(data.password) // check password
     if (!isMatch) return loginError.LOGIN_02 // incorrect password
-    let token = await this.getToken(user)
+    let token = await this.getToken(user) // get token
     return token
   }
   // get token
@@ -21,7 +21,7 @@ class UserHandler {
   }
   // register
   async register (data) {
-    let isExistUsername = await UserModel.findOne({ username: data.username })
+    let isExistUsername = await UserModel.findOne({ username: data.username }) // check username exist
     if (isExistUsername) return loginError.REGISTER_01
     let created = await UserModel.create({
       username: data.username,
@@ -35,7 +35,7 @@ class UserHandler {
     let user = await UserModel.findOne({
       _id: userId,
       isAdmin: true
-    })
+    }) // check user is admin
     if (!user) return false
     return true
   }
@@ -52,7 +52,7 @@ class UserHandler {
       phoneNumber: 1,
       address: 1,
       birthDay: 1
-    })
+    }) // after update get user info
     return updated
   }
   // get users is not admin
