@@ -1,0 +1,8 @@
+{
+  "execMap": {
+    "js": "node"
+  },
+  "watch": ["src/", "nodemon.json"],
+  "env": {},
+  "ext": "js json graphql"
+}

@@ -1,0 +1,14 @@
+export default {
+  // alert
+  SUCCESS: 'SUCCESS',
+  INVALID_TOKEN: 'INVALID_TOKEN',
+  // login
+  LOGIN_01: 'NOT_FOUND_USER',
+  LOGIN_02: 'INCORRECT_PASSWORD',
+  // register
+  REGISTER_01: 'USERNAME_EXIST',
+  // permission
+  PERMISSION_01: 'CANNOT_PERMISSION',
+  // User
+  USER_01: 'CANNOT_DELETE'
+}
