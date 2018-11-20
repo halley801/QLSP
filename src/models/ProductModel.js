@@ -23,7 +23,9 @@ const Product = new Schema({
     type: Number,
     required: true
   },
-
+  img: {
+    type: String
+  },
   despristion: {
     type: String,
     default: ''

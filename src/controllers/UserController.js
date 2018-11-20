@@ -5,15 +5,15 @@ import UserHandler from '../handlers/UserHandler'
 import { LOGIN_VALIDATION_SCHEMA } from '../validationSchema/Login'
 import UserModel from '../models/UserModel'
 
-var userHandler = new UserHandler()
+const userHandler = new UserHandler()
 class UserController extends BaseController {
   // login
   async login (req, res, next) {
     let data = req.body
     try {
-      let errors = await this.getErrorsParameters(req, LOGIN_VALIDATION_SCHEMA)
+      let errors = await this.getErrorsParameters(req, LOGIN_VALIDATION_SCHEMA) // check parameters
       if (errors.length > 0) res.onError(new ValidateError(errors))
-      let user = await userHandler.login(data)
+      let user = await userHandler.login(data) // login
       return res.onSuccess(user)
     } catch (error) {
       return res.onError(new ValidateError(error))
@@ -23,9 +23,19 @@ class UserController extends BaseController {
   async register (req, res, next) {
     let data = req.body
     try {
-      let errors = await this.getErrorsParameters(req, LOGIN_VALIDATION_SCHEMA)
+      let errors = await this.getErrorsParameters(req, LOGIN_VALIDATION_SCHEMA) // check parameters
       if (errors.length > 0) res.onError(new ValidateError(errors))
-      let user = await userHandler.register(data)
+      let user = await userHandler.register(data) // register
+      return res.onSuccess(user)
+    } catch (error) {
+      return res.onError(new ValidateError(error))
+    }
+  }
+  // get user Info
+  async getUserInfo (req, res, next) {
+    let { userId } = req
+    try {
+      let user = await userHandler.getUserInfo(userId)
       return res.onSuccess(user)
     } catch (error) {
       return res.onError(new ValidateError(error))
@@ -36,7 +46,7 @@ class UserController extends BaseController {
     const userId = req.userId
     let data = req.body
     try {
-      let update = await userHandler.updateInfo(userId, data)
+      let update = await userHandler.updateInfo(userId, data) // update
       return res.onSuccess(update)
     } catch (error) {
       return res.onError(new ValidateError(error))
@@ -45,7 +55,7 @@ class UserController extends BaseController {
   // get User
   async getUser (req, res, next) {
     try {
-      let users = await userHandler.getUser()
+      let users = await userHandler.getUser() // get all user
       return res.onSuccess(users)
     } catch (error) {
       return res.onError(new ValidateError(error))

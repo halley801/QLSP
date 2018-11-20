@@ -10,5 +10,7 @@ export default {
   // permission
   PERMISSION_01: 'CANNOT_PERMISSION',
   // User
-  USER_01: 'CANNOT_DELETE'
+  USER_01: 'CANNOT_DELETE',
+  // Product
+  PRODUCT_01: 'PRICE_CANNOT_EXCEPT'
 }

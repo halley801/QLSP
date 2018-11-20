@@ -3,7 +3,7 @@ import ProductModel from '../models/ProductModel'
 class ProductHandler {
   /**
    * Create a product
-   * @param {*} product an object {name, import, type, price, amount, desprostion}
+   * @param {*} product an object {name, img, import, type, price, amount, desprostion}
    */
   async createProduct (product) {
     let create = await ProductModel.create({
@@ -12,6 +12,7 @@ class ProductHandler {
       type: product.type,
       price: product.price,
       amount: product.amount,
+      img: product.img,
       despristion: product.despristion
     })
     return create
@@ -19,7 +20,7 @@ class ProductHandler {
   /**
    * Get all product in store
    */
-  async getAllProduct () {
+  async getAllProducts () {
     let lists = await ProductModel.find().sort({ name: 1 })
     return lists
   }
@@ -30,6 +31,13 @@ class ProductHandler {
     let product = await ProductModel.findById(productId)
     if (!product) return false
     return product
+  }
+  /**
+   * Get products by type
+   */
+  async getProductsByType (type) {
+    let lists = await ProductModel.find({ type: type }).sort({ name: 1 })
+    return lists
   }
   /**
    * Update price of a product

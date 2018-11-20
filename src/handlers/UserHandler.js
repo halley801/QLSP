@@ -39,6 +39,11 @@ class UserHandler {
     if (!user) return false
     return true
   }
+  // get info
+  async getUserInfo (userId) {
+    let user = await UserModel.findById(userId)
+    return user
+  }
   // update infomation
   async updateInfo (userId, data = {}) {
     await UserModel.update(
