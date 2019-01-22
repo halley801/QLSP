@@ -1,2 +1,2 @@
 export const MONGO_URL =
-  'mongodb://localhost:27017/QLSP'
+  'mongodb://halleyphuong18:h_123456@ds157089.mlab.com:57089/diem_hs'
